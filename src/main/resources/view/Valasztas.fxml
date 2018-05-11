@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="inf.unideb.arajanlat.controller.ValasztasController">
+   <children>
+      <Button layoutX="350.0" layoutY="348.0" mnemonicParsing="false" onAction="#buttonTeszt" prefHeight="216.0" prefWidth="212.0" text="Új Anyagfelvétel" AnchorPane.leftAnchor="350.0" AnchorPane.topAnchor="300.0">
+         <font>
+            <Font size="20.0" />
+         </font></Button>
+      <Label fx:id="label1" layoutX="46.0" layoutY="2.0" text="Z" textFill="#fff600">
+         <font>
+            <Font size="64.0" />
+         </font></Label>
+      <Label layoutX="60.0" layoutY="70.0" text="szervíz" AnchorPane.topAnchor="70.0">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
+      <Separator layoutX="-2.0" layoutY="116.0" prefWidth="200.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="12.0" />
+      <Label layoutX="195.0" layoutY="124.0" text="KARBANTARTÁS" textFill="#fffb00" AnchorPane.leftAnchor="195.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+      </Label>
+      <Label layoutX="598.0" layoutY="124.0" text="HIBAELHÁRÍTÁS" textFill="#fff200">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+      </Label>
+      <Label layoutX="942.0" layoutY="124.0" text="SZAKIPARI MUNKÁK" textFill="#ffea00" AnchorPane.rightAnchor="206.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+      </Label>
+      <Label layoutX="375.0" layoutY="22.0" text="Árajánlat készítő alkalmazás" AnchorPane.topAnchor="22.0">
+         <font>
+            <Font size="49.0" />
+         </font>
+      </Label>
+      <Separator layoutX="-2.0" layoutY="166.0" prefWidth="200.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="12.0" />
+      <Button layoutX="804.0" layoutY="348.0" mnemonicParsing="false" onAction="#ujArajanlatButton" prefHeight="216.0" prefWidth="212.0" text="Új Árajánlat" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="300.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Label layoutX="85.0" text="+">
+         <font>
+            <Font size="64.0" />
+         </font>
+      </Label>
+      <Label layoutX="129.0" layoutY="2.0" text="Z" textFill="#ffea00" AnchorPane.topAnchor="2.0">
+         <font>
+            <Font size="64.0" />
+         </font>
+      </Label>
+      <Button layoutX="107.0" layoutY="683.0" mnemonicParsing="false" onAction="#showSzerkesztes" text="Korábbi árajánlat szerkesztése" />
+      <Label layoutX="107.0" layoutY="659.0" text="Még kérdőjeles a funkció maradása!" textFill="RED" />
+   </children>
+</AnchorPane>
