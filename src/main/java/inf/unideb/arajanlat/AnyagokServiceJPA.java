@@ -18,6 +18,16 @@ public class AnyagokServiceJPA {
         this.entityManager = entityManager;
     }
 
+    /**
+     * új anyag létrehozása
+     *
+     * @param anyagNeve anyag neve
+     * @param kategoria kategoria
+     * @param egyseg egység
+     * @param ar ar
+     * @param mertekegyseg mértékegység
+     * @return
+     */
     public Anyagok ujAnyagLetrehozasa(String anyagNeve ,String kategoria,int egyseg,int ar,String mertekegyseg) {
         Anyagok anyagDatabase = new Anyagok();
         try {

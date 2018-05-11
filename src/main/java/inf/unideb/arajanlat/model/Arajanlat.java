@@ -73,7 +73,7 @@ public class Arajanlat {
     }
 
     /**
-     * megadja az azonosítót
+     * megadja az azonosítót.
      *
      * @return visszatér az azonosítóval
      */

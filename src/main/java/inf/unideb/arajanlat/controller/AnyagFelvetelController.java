@@ -14,6 +14,11 @@ import javafx.stage.Stage;
 /**
  * Created by Stefyy on 2017.12.30..
  */
+
+/**
+ * az anyagfelvétel ûrlap viewcontrollere.
+ *
+ */
 public class AnyagFelvetelController {
 
     @FXML

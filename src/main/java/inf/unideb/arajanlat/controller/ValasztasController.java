@@ -11,13 +11,13 @@ public class ValasztasController {
 
     @FXML
     private Label label1;
+
+    private MainApp mainApp;
     /**
      * beállítja a mainApp-ot.
      *
      * @param mainApp megkapja a mainapp-ot
      */
-    private MainApp mainApp;
-
     public void setMainApp(MainApp mainApp){
         this.mainApp=mainApp;
     }

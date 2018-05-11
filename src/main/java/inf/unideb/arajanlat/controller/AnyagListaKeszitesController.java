@@ -89,6 +89,12 @@ public class AnyagListaKeszitesController {
         this.mainApp=mainApp;
     }
 
+    /**
+     * kitölti a régi árajánlattal a táblát és kiszámolja az értéket, lehet  szerkesztei.
+     *
+     * @param mainApp mainapp
+     * @param list lista
+     */
     public void setMainAppWithArajanlat(MainApp mainApp,List<Arajanlat> list){
         this.mainApp=mainApp;
         szerkesztettRegiLista(list);

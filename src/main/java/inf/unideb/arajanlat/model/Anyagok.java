@@ -16,7 +16,7 @@ import javax.persistence.Id;
 @Entity
 public class Anyagok {
     /**
-     * paraméter nélküli konstruktor
+     * paraméter nélküli konstruktor.
      *
      */
     public Anyagok() {
