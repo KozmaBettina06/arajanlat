@@ -7,6 +7,10 @@ import javafx.scene.control.Label;
 /**
  * Created by Stefyy on 2017.12.30..
  */
+/**
+ * a kezdő felület controller osztálya.
+ *
+ */
 public class ValasztasController {
 
     @FXML
@@ -14,7 +18,7 @@ public class ValasztasController {
 
     private MainApp mainApp;
     /**
-     * be�ll�tja a mainApp-ot.
+     * beállítja a mainApp-ot.
      *
      * @param mainApp megkapja a mainapp-ot
      */

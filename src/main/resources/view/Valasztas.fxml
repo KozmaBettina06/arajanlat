@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="inf.unideb.arajanlat.controller.ValasztasController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="inf.unideb.arajanlat.controller.ValasztasController">
    <children>
-      <Button layoutX="350.0" layoutY="348.0" mnemonicParsing="false" onAction="#buttonTeszt" prefHeight="216.0" prefWidth="212.0" text="Új Anyagfelvétel" AnchorPane.leftAnchor="350.0" AnchorPane.topAnchor="300.0">
+      <Button layoutX="350.0" layoutY="348.0" mnemonicParsing="false" onAction="#buttonTeszt" prefHeight="216.0" prefWidth="212.0" text="Új Anyagfelvétel" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="300.0">
          <font>
             <Font size="20.0" />
          </font></Button>
@@ -76,7 +76,7 @@
          </font>
       </Label>
       <Separator layoutX="-2.0" layoutY="166.0" prefWidth="200.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="12.0" />
-      <Button layoutX="804.0" layoutY="348.0" mnemonicParsing="false" onAction="#ujArajanlatButton" prefHeight="216.0" prefWidth="212.0" text="Új Árajánlat" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="300.0">
+      <Button layoutX="804.0" layoutY="348.0" mnemonicParsing="false" onAction="#ujArajanlatButton" prefHeight="216.0" prefWidth="212.0" text="Új Árajánlat" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="300.0">
          <font>
             <Font size="20.0" />
          </font>
@@ -91,7 +91,9 @@
             <Font size="64.0" />
          </font>
       </Label>
-      <Button layoutX="107.0" layoutY="683.0" mnemonicParsing="false" onAction="#showSzerkesztes" text="Korábbi árajánlat szerkesztése" />
-      <Label layoutX="107.0" layoutY="659.0" text="Még kérdőjeles a funkció maradása!" textFill="RED" />
+      <Button layoutX="570.0" layoutY="300.0" mnemonicParsing="false" onAction="#showSzerkesztes" prefHeight="216.0" prefWidth="212.0" text="Árajánlat szerkesztése">
+         <font>
+            <Font size="19.0" />
+         </font></Button>
    </children>
 </AnchorPane>

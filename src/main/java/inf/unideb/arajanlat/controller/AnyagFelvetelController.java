@@ -11,12 +11,14 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 /**
  * Created by Stefyy on 2017.12.30..
  */
 
 /**
- * az anyagfelv�tel �rlap viewcontrollere.
+ * az anyagfelvétel űrlap viewcontrollere.
  *
  */
 public class AnyagFelvetelController {
@@ -36,10 +38,13 @@ public class AnyagFelvetelController {
     @FXML
     private SplitMenuButton kategoriaSplitMenuButton;
 
+    Logger logger = LoggerFactory.getLogger(AnyagFelvetelController.class);
     private MainApp mainApp;
 
+
+
     /**
-     * be�ll�tja a mainApp-ot.
+     * beállítja a mainApp-ot.
      *
      * @param mainApp megkapja a mainapp-ot
      */
@@ -54,17 +59,19 @@ public class AnyagFelvetelController {
 
     @FXML
     private void anyagFeltoltesButton() {
-        if (validateFields()) {
+        String hiba = hibaMessage();
+        if (validateFields(hiba)) {
             Anyagok anyagok = getAnyag();
 
             JpaService.getJpaServiceInstance().getAnyagokServiceJPA().ujAnyagLetrehozasa(anyagok);
 
             showInformationAlert();
-
+            logger.info("új anyag feltöltve az adatbázisba.");
             resetFields();
 
         } else {
-            showErrorAlert();
+            showErrorAlert(hiba);
+            logger.info("Új anyag feltöltése nem sikerült, nem megfelelő kitöltés miatt.");
         }
 
     }
@@ -79,30 +86,57 @@ public class AnyagFelvetelController {
         kategoriaSplitMenuButton.setText(((MenuItem) event.getSource()).getText());
     }
 
-    private boolean validateFields() {
+    private String hibaMessage() {
+        Integer elso;
+        Integer masodik;
+        String hiba="";
+
+        try{
+            elso=Integer.parseInt(arMennyisegTextField.getText());
+        }catch (NumberFormatException e){
+            hiba= hiba +"Az árhoz számot kell beírni.\n";
+        }
+
+        try{
+            masodik=Integer.parseInt(egysegTextField.getText());
+        }catch (NumberFormatException e){
+            hiba= hiba +"a mennyiséghez számot kell beírni.\n";
+        }
         if (megnevezesTextField.getText().equals("") || megnevezesTextField.getText().trim().equals("")) {
-            return false;
+            hiba= hiba +"Megnevezés nincs kitöltve.\n";
         }
 
         if (arMennyisegTextField.getText().equals("") || arMennyisegTextField.getText().trim().equals("")) {
-            return false;
+            hiba= hiba +"Ár nincs kitöltve.\n";
         }
 
         if (egysegTextField.getText().equals("") || egysegTextField.getText().trim().equals("")) {
-            return false;
+            hiba= hiba +"Egység nincs kitöltve.\n";
         }
 
         if (mertekegysegSplitMenuButton.getText().equals("mertekegyseg")) {
-            return false;
+            hiba= hiba +"mértékegység nincs kiválasztva.\n";
         }
 
         if (kategoriaSplitMenuButton.getText().equals("kategoria")) {
-            return false;
+            hiba= hiba +"Kategria nincs kiválasztva.\n";
         }
-
-        return true;
+        return hiba;
     }
 
+    /**
+     * Megvizsgálja, hogy létrejött-e hibaüzenet.
+     *
+     * @param message megkapja a hiba Stringet
+     * @return logikai értékkel tér vissza
+     */
+    public boolean validateFields(String message){
+        if(message.equals("")){
+            return true;
+        }else {
+            return false;
+        }
+    }
     private void resetFields() {
         megnevezesTextField.setText("");
         arMennyisegTextField.setText("");
@@ -130,10 +164,11 @@ public class AnyagFelvetelController {
         alert.showAndWait();
     }
 
-    private void showErrorAlert() {
+    private void showErrorAlert(String hiba) {
+
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Nincs megfeleloen kitoltve");
-        alert.setContentText("Rosszul adtal meg valamait kerlek javitsd");
+        alert.setContentText(hiba);
         alert.initOwner(mainApp.getPrimaryStage());
         alert.showAndWait();
     }

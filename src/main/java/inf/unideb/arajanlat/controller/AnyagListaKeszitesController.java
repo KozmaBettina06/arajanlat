@@ -14,12 +14,19 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Stefyy on 2018. 05. 07..
+ */
+
+/**
+ * az árajánlat készítő felhazsnálói felület controller osztálya.
+ *
  */
 public class AnyagListaKeszitesController {
 
@@ -73,6 +80,8 @@ public class AnyagListaKeszitesController {
 
     List<Arajanlat> arajanlatList = new ArrayList<>();
 
+    Logger logger = LoggerFactory.getLogger(AnyagListaKeszitesController.class);
+
     @FXML
     private void initialize() {
         anyagTableViewKivalasztottChangeListener();
@@ -81,7 +90,7 @@ public class AnyagListaKeszitesController {
 
     private MainApp mainApp;
     /**
-     * be�ll�tja a mainApp-ot.
+     * beállítja a mainApp-ot.
      *
      * @param mainApp megkapja a mainapp-ot
      */
@@ -90,7 +99,7 @@ public class AnyagListaKeszitesController {
     }
 
     /**
-     * kit�lti a r�gi �raj�nlattal a t�bl�t �s kisz�molja az �rt�ket, lehet  szerkesztei.
+     * kitölti a régi árajanlattal a táblát és kiszámolja az értéket, lehet  szerkesztei.
      *
      * @param mainApp mainapp
      * @param list lista
@@ -109,24 +118,33 @@ public class AnyagListaKeszitesController {
 
     @FXML
     private void arajanlatFeltoltes(){
-        if(ajanlatNeveTextField.getText().trim().equals("")){
-            return;
-        }
+        if(validateVeglegesites()){
+            for(Arajanlat all : arajanlatList){
+                all.setArajanlatNeve(ajanlatNeveTextField.getText());
+            }
 
-        for(Arajanlat all : arajanlatList){
-            all.setArajanlatNeve(ajanlatNeveTextField.getText());
+            JpaService.getJpaServiceInstance().getArajanlatServiceJPA().ujArajanlatLetrehozasa(arajanlatList);
+            logger.info("Új árajánlat került az adatbázisba");
+            showVeglegesitesInfo();
+        }else{
+            logger.info("Új árajánlat feltöltése nem sikerült, hiányzó megnevezés");
+            showVeglegesitesError();
         }
-
-        JpaService.getJpaServiceInstance().getArajanlatServiceJPA().ujArajanlatLetrehozasa(arajanlatList);
 
     }
 
 
     @FXML
     private void keresesButton(){
-        List<Anyagok> anyagokList = JpaService.getJpaServiceInstance().getAnyagokServiceJPA().anyagokKategoriaSzerint(kategoriaSplitMenuButton.getText());
+        if (validateKeresButton()){
+            List<Anyagok> anyagokList = JpaService.getJpaServiceInstance().getAnyagokServiceJPA().anyagokKategoriaSzerint(kategoriaSplitMenuButton.getText());
 
-        showTableColumns(anyagokList);
+            showTableColumns(anyagokList);
+        }else{
+            logger.info("Keresés nem sikerült, nincs kategoria kiválasztva.");
+            showError();
+        }
+
     }
 
     @FXML
@@ -172,10 +190,16 @@ public class AnyagListaKeszitesController {
 
     @FXML
     private void showVeglegeitettTableColumns(){
-        addNewArajanlatList();
-        oszzegKiszamitas();
-        showVeglegesitettTable();
-    }
+        if(validateAthelyez()){
+            addNewArajanlatList();
+            oszzegKiszamitas();
+            showVeglegesitettTable();
+        }else{
+            logger.info("Anyag áthelyezés nem sikerült, hiányzó mennyiség");
+            showAthelyezError();
+        }
+        }
+
 
     @FXML
     private void removeVeglegesitettAnyag(){
@@ -193,7 +217,6 @@ public class AnyagListaKeszitesController {
         Arajanlat newArajanlat = new Arajanlat();
         newArajanlat.setAnyagNeve(akatualisAnyag.getAnyagNeve());
         newArajanlat.setEgyseg(akatualisAnyag.getEgyseg());
-        //Validation hianyzik
         newArajanlat.setMennyiseg(Integer.parseInt(mennyisegTextField.getText()));
         newArajanlat.setEgysegar(akatualisAnyag.getAr() * newArajanlat.getMennyiseg());
         newArajanlat.setMertekegyseg(akatualisAnyag.getMertekegyseg());
@@ -233,6 +256,79 @@ public class AnyagListaKeszitesController {
             Arajanlat uj = new Arajanlat(list.get(i));
             arajanlatList.add(uj);
         }
+    }
+
+    /**
+     * Megvizsgálja, hogy történt-e kategória kiválasztás.
+     *
+     * @return logikai értékkel tér vissza
+     */
+    public boolean validateKeresButton(){
+        if (kategoriaSplitMenuButton.getText().equals("kategoria")){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    private void showError(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Nincs kiválasztva kategória.");
+        alert.setContentText("Válaszd ki a kategóriát.");
+        alert.initOwner(mainApp.getPrimaryStage());
+        alert.showAndWait();
+    }
+
+    /**
+     * megvizsgálja, hogy a mennyiség mezőbe szám lett-e beírva.
+     *
+     * @return logikai értékkel tér vissza
+     */
+    public boolean validateAthelyez(){
+       try {
+           Integer number = Integer.parseInt(mennyisegTextField.getText());
+           return true;
+       }catch (NumberFormatException e){
+           return false;
+       }
+    }
+
+    private void showAthelyezError(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Hibás mennyiség.");
+        alert.setHeaderText("Nem megfelelő formátum vagy nincs kitöltve, használj számokat");
+        alert.setContentText("Add meg mennyi anyagra van szükség.");
+        alert.initOwner(mainApp.getPrimaryStage());
+        alert.showAndWait();
+    }
+
+    /**
+     * megvizsgálja, hogy az árajánlat neve mező ki lett-e töltve.
+     *
+     * @return logikai értékkel tér vissza
+     */
+    public boolean validateVeglegesites(){
+        if (ajanlatNeveTextField.getText().equals("")){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    private void showVeglegesitesError(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Nincs beírva az ajánlat neve.");
+        alert.setContentText("Add meg milyen néven legyen mentve.");
+        alert.initOwner(mainApp.getPrimaryStage());
+        alert.showAndWait();
+    }
+
+    private void showVeglegesitesInfo(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Új árajánlat feltöltés");
+        alert.setContentText("Az árajánlat bekerült az adatbázisba.");
+        alert.initOwner(mainApp.getPrimaryStage());
+        alert.showAndWait();
     }
 }
 

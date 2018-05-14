@@ -1,4 +1,4 @@
 /**
- * Created by Stefyy on 2018. 05. 11..
+ * Az adatbáziskapcsolatokat biztosító osztályok és a Main helye.
  */
 package inf.unideb.arajanlat;

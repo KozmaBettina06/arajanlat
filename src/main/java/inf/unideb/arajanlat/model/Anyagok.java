@@ -10,13 +10,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
- * Entity osztály az alapanyagokhoz.
+ * Entity osztÃ¡ly az alapanyagokhoz.
  *
  */
 @Entity
 public class Anyagok {
     /**
-     * paraméter nélküli konstruktor.
+     * paramÃ©ter nÃ©lkÃ¼li konstruktor.
      *
      */
     public Anyagok() {
@@ -37,10 +37,10 @@ public class Anyagok {
      * konstruktor.
      *
      * @param anyagNeve az anyag neve
-     * @param kategoria anyagkategória
-     * @param egyseg egység, pl 2 méter egy egység
-     * @param ar anyag ára
-     * @param mertekegyseg az anyga mértékegysége
+     * @param kategoria anyagkategÃ³ria
+     * @param egyseg egysÃ©g, pl 2 mÃ©ter egy egysÃ©g
+     * @param ar anyag Ã¡ra
+     * @param mertekegyseg az anyga mÃ©rtÃ©kegysÃ©ge
      */
     public Anyagok(String anyagNeve, String kategoria, int egyseg, int ar, String mertekegyseg) {
         this.anyagNeve = anyagNeve;
@@ -51,108 +51,108 @@ public class Anyagok {
     }
 
     /**
-     * megadja az azonosítót.
+     * megadja az azonosÃ­tÃ³t.
      *
-     * @return visszatér az azonosítóval
+     * @return visszatÃ©r az azonosÃ­tÃ³val
      */
     public long getId() {
         return id;
     }
 
     /**
-     * beállítja az azonosító értékét.
+     * beÃ¡llÃ­tja az azonosÃ­tÃ³ Ã©rtÃ©kÃ©t.
      *
-     * @param id az azonosítót kapja meg.
+     * @param id az azonosÃ­tÃ³t kapja meg.
      */
     public void setId(long id) {
         this.id = id;
     }
 
     /**
-     * megadja az anyag nevét.
+     * megadja az anyag nevÃ©t.
      *
-     * @return az anyga nevével tér vissza
+     * @return az anyga nevÃ©vel tÃ©r vissza
      */
     public String getAnyagNeve() {
         return anyagNeve;
     }
 
     /**
-     *  beállítja az anyga nevét.
+     *  beÃ¡llÃ­tja az anyga nevÃ©t.
      *
-     * @param anyagNeve az anyag nevét kapja meg
+     * @param anyagNeve az anyag nevÃ©t kapja meg
      */
     public void setAnyagNeve(String anyagNeve) {
         this.anyagNeve = anyagNeve;
     }
 
     /**
-     * megadja a kategóriát.
+     * megadja a kategÃ³riÃ¡t.
      *
-     * @return visszatér az anyag kategóriával
+     * @return visszatÃ©r az anyag kategÃ³riÃ¡val
      */
     public String getKategoria() {
         return kategoria;
     }
 
     /**
-     * beállítja a kategóriát.
+     * beÃ¡llÃ­tja a kategÃ³riÃ¡t.
      *
-     * @param kategoria megkapja a kategóriát
+     * @param kategoria megkapja a kategÃ³riÃ¡t
      */
     public void setKategoria(String kategoria) {
         this.kategoria = kategoria;
     }
 
     /**
-     * megadja az egység értékét.
+     * megadja az egysÃ©g Ã©rtÃ©kÃ©t.
      *
-     * @return visszatér az egység értékével
+     * @return visszatÃ©r az egysÃ©g Ã©rtÃ©kÃ©vel
      */
     public int getEgyseg() {
         return egyseg;
     }
 
     /**
-     * beállítja az egység értékét.
+     * beÃ¡llÃ­tja az egysÃ©g Ã©rtÃ©kÃ©t.
      *
-     * @param egyseg az egység értékét kapja meg
+     * @param egyseg az egysÃ©g Ã©rtÃ©kÃ©t kapja meg
      */
     public void setEgyseg(int egyseg) {
         this.egyseg = egyseg;
     }
 
     /**
-     * megadja az anyag  árát.
+     * megadja az anyag  Ã¡rÃ¡t.
      *
-     * @return visszatér az anyag árával
+     * @return visszatÃ©r az anyag Ã¡rÃ¡val
      */
     public int getAr() {
         return ar;
     }
 
     /**
-     * beállítja az anyag árát.
+     * beÃ¡llÃ­tja az anyag Ã¡rÃ¡t.
      *
-     * @param ar megkapja az árat
+     * @param ar megkapja az Ã¡rat
      */
     public void setAr(int ar) {
         this.ar = ar;
     }
 
     /**
-     * megadja a mértékegységet.
+     * megadja a mÃ©rtÃ©kegysÃ©get.
      *
-     * @return visszatér a mértékegységgel
+     * @return visszatÃ©r a mÃ©rtÃ©kegysÃ©ggel
      */
     public String getMertekegyseg() {
         return mertekegyseg;
     }
 
     /**
-     * beállítja a mértékegységet.
+     * beÃ¡llÃ­tja a mÃ©rtÃ©kegysÃ©get.
      *
-     * @param mertekegyseg megkapja a mértékegységet
+     * @param mertekegyseg megkapja a mÃ©rtÃ©kegysÃ©get
      */
     public void setMertekegyseg(String mertekegyseg) {
         this.mertekegyseg = mertekegyseg;

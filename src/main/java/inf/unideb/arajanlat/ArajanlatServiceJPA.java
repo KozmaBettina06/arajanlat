@@ -10,14 +10,29 @@ import java.util.List;
 /**
  * Created by Stefyy on 2017.12.30..
  */
+
+/**
+ * az árajánlatok adatbázis elérését biztosító osztály.
+ *
+ */
 public class ArajanlatServiceJPA {
 
     EntityManager entityManager;
 
+    /**
+     * konstruktor.
+     *
+     * @param entityManager megkapja az entityManagert
+     */
     public ArajanlatServiceJPA(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
+    /**
+     * az elkészült árajánlat lista elemeit feltölti az adatbázisba.
+     *
+     * @param list megkapja az ajánlat listát.
+     */
     public void ujArajanlatLetrehozasa(List<Arajanlat> list) {
         for (Arajanlat all : list) {
             try {
@@ -30,6 +45,12 @@ public class ArajanlatServiceJPA {
         }
     }
 
+    /**
+     * listát készít az azonos árajánlatú nevekről.
+     *
+     * @param arajanlatNeve megkapja az árajánlott nevet
+     * @return visszatér az eredményül kapott listával.
+     */
     public List<Arajanlat> arajanlatNevSzerint(String arajanlatNeve){
         Query query = null;
 
@@ -42,6 +63,11 @@ public class ArajanlatServiceJPA {
         return query.getResultList();
     }
 
+    /**
+     * összes árajanlatfajta kilistázva egyszer.
+     *
+     * @return visszatér a különböző árajánlat nevekkel
+     */
     public List<String> osszesArajanlat(){
         Query query = null;
         try {

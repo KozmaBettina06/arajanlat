@@ -8,7 +8,10 @@ import inf.unideb.arajanlat.MainApp;
 /**
  * Created by Stefyy on 2017.12.30..
  */
-
+/**
+ * a rootlaout controller oszt√°lya.
+ *
+ */
 public class RootLayoutController {
 
     @FXML
@@ -16,7 +19,7 @@ public class RootLayoutController {
 
     private MainApp mainApp;
     /**
-     * be·llÌtja a mainApp-ot.
+     * be√°ll√≠tja a mainApp-ot.
      *
      * @param mainApp megkapja a mainapp-ot
      */

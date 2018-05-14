@@ -8,8 +8,8 @@
         <class>inf.unideb.arajanlat.model.Arajanlat</class>
 
         <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/anyagfeltoltes?useSSL=false&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC" />
-            <!--<property name="javax.persistence.jdbc.url" value="jdbc:mysql://192.168.1.72/anyagfeltoltes?useSSL=false&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC" />-->
+            <!--<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/anyagfeltoltes?useSSL=false&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC" />-->
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://192.168.1.68/anyagfeltoltes?useSSL=false&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC" />
 
             <!-- The database username -->
             <property name="javax.persistence.jdbc.user" value="" />

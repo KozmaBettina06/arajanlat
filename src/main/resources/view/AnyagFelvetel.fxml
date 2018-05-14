@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="inf.unideb.arajanlat.controller.AnyagFelvetelController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="inf.unideb.arajanlat.controller.AnyagFelvetelController">
    <children>
       <Button layoutX="742.0" layoutY="570.0" mnemonicParsing="false" onAction="#showValasztas" text="Kezdőlapra" />
       <Label layoutX="567.0" layoutY="66.0" text="Új anyagfelvétel" AnchorPane.topAnchor="24.0">
@@ -87,23 +87,23 @@
          </font>
       </Label>
       <TextField fx:id="megnevezesTextField" layoutX="564.0" layoutY="230.0" prefHeight="25.0" prefWidth="261.0" />
-      <TextField fx:id="arMennyisegTextField" layoutX="564.0" layoutY="313.0" prefHeight="25.0" prefWidth="261.0" />
+      <TextField fx:id="arMennyisegTextField" layoutX="564.0" layoutY="292.0" prefHeight="25.0" prefWidth="261.0" />
       <Label layoutX="564.0" layoutY="204.0" text="Megnevezés">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="564.0" layoutY="287.0" text="Ár / mennyiség">
+      <Label layoutX="564.0" layoutY="265.0" text="Ár / mennyiség">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="564.0" layoutY="376.0" text="Egység">
+      <Label layoutX="568.0" layoutY="394.0" text="Mértékegység">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <SplitMenuButton fx:id="mertekegysegSplitMenuButton" layoutX="567.0" layoutY="403.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="261.0" text="mertekegyseg">
+      <SplitMenuButton fx:id="mertekegysegSplitMenuButton" layoutX="567.0" layoutY="421.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="261.0" text="mertekegyseg">
         <items>
           <MenuItem mnemonicParsing="false" onAction="#mertekegysegValasztas" text="db" />
           <MenuItem mnemonicParsing="false" onAction="#mertekegysegValasztas" text="m" />
@@ -123,7 +123,12 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="624.0" layoutY="381.0" text="(db, méter stb)" />
-      <TextField fx:id="egysegTextField" layoutX="146.0" layoutY="326.0" />
+      <Label layoutX="685.0" layoutY="399.0" text="(db, méter stb)" />
+      <TextField fx:id="egysegTextField" layoutX="564.0" layoutY="359.0" prefHeight="25.0" prefWidth="261.0" />
+      <Label layoutX="567.0" layoutY="330.0" text="Egység">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

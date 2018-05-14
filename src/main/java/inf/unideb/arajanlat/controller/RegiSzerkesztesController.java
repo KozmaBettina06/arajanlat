@@ -19,6 +19,10 @@ import java.util.List;
 /**
  * Created by Stefyy on 2018. 05. 07..
  */
+/**
+ * a régi rajánlat szerkesztés felhazsnálói felület controller osztálya.
+ *
+ */
 public class RegiSzerkesztesController {
 
     @FXML
@@ -41,7 +45,7 @@ public class RegiSzerkesztesController {
 
     private MainApp mainApp;
     /**
-     * be�ll�tja a mainApp-ot.
+     * beállítja a mainApp-ot.
      *
      * @param mainApp megkapja a mainapp-ot
      */

@@ -17,29 +17,59 @@ import java.util.List;
 /**
  * Created by Stefyy on 2017.12.30..
  */
+
+/**
+ * az alkalmazás Main függvényét tartalmzó osztáyl.
+ * kiterjeszti  az Application osztályt, amelytől JavaFx projekt lesz.
+ * felülírásra kerül az init a stop és a strart meódusokat.
+ *
+ */
 public class MainApp extends Application {
 
     Logger logger = LoggerFactory.getLogger(MainApp.class);
     private Stage primaryStage;
     private BorderPane rootLayout;
 
+    /**
+     * megadja a rootLayoutot.
+     *
+     * @return visszatér a rootlayouttal
+     */
     public BorderPane getRootLayout() {
         return rootLayout;
     }
 
+    /**
+     * megadja a PrimaryStage-et.
+     *
+     * @return visszatér a PrimaryStage-el
+     */
     public Stage getPrimaryStage() {
         return primaryStage;
     }
 
+    /**
+     * Inicializálja és felépíti az adatbázis kapcsolatot.
+     *
+     * @throws Exception kivétel
+     */
     @Override
     public void init() throws Exception {
-        logger.info("Ez az elso logom teszt");
+        logger.info("Adatbázis kapcsolat felépítése ... ");
         JpaService.getJpaServiceInstance().setEntityManagerFactory(Persistence.createEntityManagerFactory("ArajanlatProgram"));
         JpaService.getJpaServiceInstance().setEntityManager(JpaService.getJpaServiceInstance().getEntityManagerFactory().createEntityManager());
         JpaService.getJpaServiceInstance().setAnyagokServiceJPA(new AnyagokServiceJPA(JpaService.getJpaServiceInstance().getEntityManager()));
         JpaService.getJpaServiceInstance().setArajanlatServiceJPA(new ArajanlatServiceJPA(JpaService.getJpaServiceInstance().getEntityManager()));
+        logger.info("Adatbázis kapcsolat létrehozva. ");
     }
 
+    /**
+     * a start metódus a JavaFx alkalmazás belépési pontja.
+     * inicializálódik a RootLayout, majd rákerül a kezdőoldal scene-je.
+     *
+     * @param primaryStage megkapja a PrimaryStage értékét
+     * @throws Exception kivétel
+     */
     public void start(Stage primaryStage) throws Exception {
 
         this.primaryStage = primaryStage;
@@ -48,6 +78,10 @@ public class MainApp extends Application {
 
     }
 
+    /**
+     * létrehozza a RootLayoutot.
+     *
+     */
     public void initRootLayout() {
         try {
 
@@ -68,6 +102,10 @@ public class MainApp extends Application {
 
     }
 
+    /**
+     * az alkalmazás kezdő scene-je.
+     *
+     */
     public void showValasztas()
     {
         try {
@@ -83,6 +121,10 @@ public class MainApp extends Application {
         }
     }
 
+    /**
+     * Anyagfelvétel scene-re váltás.
+     *
+     */
     public void showAnyagFelvetel()
     {
         try {
@@ -98,6 +140,9 @@ public class MainApp extends Application {
         }
     }
 
+    /**
+     * AnyagListaKészítés scene-re váltás.
+     */
     public void showAnyagListaKeszites()
     {
         try {
@@ -113,6 +158,10 @@ public class MainApp extends Application {
         }
     }
 
+    /**
+     * ArajanlatSzerkesztes scene-re váltás.
+     * @param list régi árajánlatot vár
+     */
     public void showArajanlatSzerkesztes(List<Arajanlat> list)
     {
         try {
@@ -126,7 +175,9 @@ public class MainApp extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    }/**
+     * RegiSzerkesztes scene-re váltás.
+     */
 
     public void showRegiSzerkesztesView()
     {
@@ -143,12 +194,24 @@ public class MainApp extends Application {
     }
 
 
+    /**
+     * Az alkalmazás bezárásakor hívódik meg, felbontja az adatbázis kapcsolatot.
+     *
+     * @throws Exception kivétel
+     */
     @Override
     public void stop() throws Exception {
         JpaService.getJpaServiceInstance().getEntityManager().close();
         JpaService.getJpaServiceInstance().getEntityManagerFactory().close();
+        logger.info("Adatbázis kapcsolat felbontva.");
     }
 
+    /**
+     * az alkalmazás belépési pontja.
+     *
+     * @param args argumentum lista
+     * @throws Exception kivétel
+     */
     public static void main(String[] args) throws Exception {
         launch(args);
     }
